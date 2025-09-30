@@ -1,5 +1,5 @@
 const User = require("../models/user");
-
+const Listing = require("../models/listing")
 
 module.exports.renderSignUpForm = (req,res)=>{
 
@@ -66,7 +66,10 @@ module.exports.logout = (req,res,next)=>{
 
      })
 }
-module.exports.home = (req, res) => {
-  res.render("index");
+module.exports.home = async(req, res) => {
+  
+  const allListings =  await Listing.find({});
+
+  res.render("listings/index",{allListings});
 };
 
