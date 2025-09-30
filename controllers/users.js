@@ -66,3 +66,7 @@ module.exports.logout = (req,res,next)=>{
 
      })
 }
+module.exports.home = (req, res) => {
+  res.render("index");
+};
+

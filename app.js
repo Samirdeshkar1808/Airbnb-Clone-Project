@@ -131,9 +131,12 @@ app.use((err,req,res,next)=>{
 })
 
 
-app.listen(1980,()=>{
-   console.log("Server is started at port 1980");
+const port = process.env.PORT || 1980;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
+
 
 
 
