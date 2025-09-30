@@ -1,8 +1,7 @@
 {
   "engines": {
-     "node": "22.18.0"
-  }, 
-
+    "node": "22.18.0"
+  },
   "name": "airbnb",
   "version": "1.0.0",
   "description": "This is my first megaproject. it is replica of airbnb",
@@ -13,7 +12,7 @@
   "author": "Samir",
   "license": "ISC",
   "dependencies": {
-    "cloudinary": "^2.7.0",
+    "cloudinary": "^1.27.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
     "dotenv": "^17.2.2",
