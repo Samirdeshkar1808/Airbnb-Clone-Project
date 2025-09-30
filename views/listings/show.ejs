@@ -1,0 +1,174 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+
+  <div class="row mt-3">
+        <div class="col-8 offset-3">
+          
+           <h3><b><%= specific.title %></b></h3>
+        </div>
+
+        <div class="listing-card col-6 offset-3 show-card">
+         
+          <img src="<%= specific.image.url %>" class="card-img-top show-img" alt="listing_image">
+
+             <div class="card-body">
+
+                <p class="card-text">
+
+                  Owned by : <b><i><%= specific.owner.username %></i></b>
+
+                </p>
+                <p class="card-text">
+
+                   <%= specific.description %>  
+
+                </p>
+                <p class="card-text">
+
+                   &#8377; <%= specific.price.toLocaleString("en-IN") %> <!--&#8377 it is rupee symbol , .toLocaleString("en-IN") ye bas currency me comma lagata hai. -->
+
+                </p>  
+                <p class="card-text">
+
+                     <%= specific.location %>
+
+                </p>
+                <p class="card-text">
+   
+                    <%= specific.country %>
+
+                </p>
+                        
+             </div>
+
+        </div>
+
+    </div>
+      
+    <% if(currUser && currUser._id.equals(specific.owner._id)) { %>   <!--currUser exist karna chahiye aur uski id owner ke id se match honi chahiye. -->
+
+    
+      <div class="btns">
+          <a href="/listings/<%= specific._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
+          <br>
+           
+          <form method="post" action="/listings/<%=specific._id%>?_method=delete">
+            <button class="btn btn-dark offset-5">Delete</button>
+          </form>
+      </div>
+
+    <% } %>
+
+
+  
+
+    <!--see this in phase 2-->
+    
+     <div class="col-8 offset-3 mb-3">
+      <% if(currUser) { %>   <!--isme bas user loggedin hona chahiye-->
+      <h4>Leave a Review</h4>
+
+      <form method="post" action="/listings/<%= specific.id %>/reviews" novalidate class="needs-validation">
+
+         <div class="mb-3 mt-3">
+              
+          <label for="rating" class="form-label">Rating : </label> 
+          <fieldset class="starability-slot">
+           <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+
+           <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+           <label for="first-rate1" title="Terrible">1 star</label>
+           <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+           <label for="first-rate2" title="Not good">2 stars</label>
+           <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+           <label for="first-rate3" title="Average">3 stars</label>
+           <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+           <label for="first-rate4" title="Very good">4 stars</label>
+           <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+           <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+         </div>
+         <div class="mb-3 mt-3">
+
+           <label for="comment" class="form-label">Comments</label>
+           <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+           <div class="invalid-feedback">Please add Comment before Submitting </div>
+         </div>
+
+         <button class="btn btn-outline-dark">Submit</button>
+         
+      </form>
+     <% } %>
+    
+
+  
+   <% if (specific.reviews.length > 0){ %>  
+    <hr>   
+    <p><b>All Reviews</b></p>
+
+      <div class="row">
+
+
+       <% for (i of specific.reviews) { %>
+
+        <div class="card col-5 mb-3 ms-3">
+            <div class="card-body">
+
+             <h5 class="card-title">@<%= i.author.username %></h5>
+
+              <p class="card-text starability-result" data-rating="<%= i.rating %>"></p>
+
+             <p class="card-text"><%= i.comment %></p>
+
+            </div>
+            <br>
+         
+
+            <% if(currUser && currUser._id.equals(i.author._id)) { %>
+               
+             <form class="mb-3" method="post" action="/listings/<%= specific._id %>/reviews/<%= i.id%>?_method=delete">
+               <button class="btn btn-sm btn-dark">Delete</button>
+             </form>
+            <% } %>
+        </div>
+       
+       <% } %>
+      </div>
+
+    <% } %>
+    
+    
+  </div>
+
+  <!--Map (phase 3)-->
+
+
+ 
+<script>
+  window.latitude = <%- specific.latitude %>;     //it will work 
+  window.longitude = <%- specific.longitude %>;
+  window.locationName = "<%- specific.location %>";
+</script>
+
+
+<script>
+  console.log("specific:", <%- JSON.stringify(specific) %>);
+</script>
+
+
+
+    <div class="col-8 offset-3 mb-3">
+
+      <h2>Where you will be :</h2>
+
+        <div id="map" style="height: 400px; width:80vh;">
+
+        </div>
+    
+    </div>
+
+  
+   
+    
+</body>
+
