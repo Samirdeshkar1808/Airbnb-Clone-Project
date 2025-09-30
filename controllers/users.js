@@ -24,7 +24,7 @@ module.exports.signup = async(req,res)=>{
              return next(err);
         }
         
-        req.flash("success","Welcome to Airbnb");
+        req.flash("success","Welcome to Traveler");
 
         res.redirect("/listings");
 
@@ -47,7 +47,7 @@ module.exports.renderLoginForm = (req,res)=>{
 
 module.exports.login = async (req,res)=>{
 
-    req.flash("success","welcome back to airbnb"); 
+    req.flash("success","welcome back to Traveler"); 
 
     let redirectUrl = res.locals.redirectUrl || "/listings"; 
     res.redirect(redirectUrl);
