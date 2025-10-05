@@ -13,10 +13,9 @@
       .filter{
          margin-top: 2rem ;
          text-align: center;
-         margin-right: 2rem;
+         margin-right: 1rem;
 
          opacity: 0.7;
-
 
       }
       .filter:hover{
@@ -39,6 +38,41 @@
          border-radius:1rem ;
          height: 3.5rem;
          padding: 1rem
+      }
+
+      @media(max-width:991px) and (min-width:512px){
+         
+         .tax-toggle{
+            
+             margin: 0 auto;
+         }
+          
+      }
+
+      @media(max-width:444px){
+
+         .tax-toggle{
+            
+             margin: 0 auto;
+         }
+         
+      }
+
+      @media (max-width:512px) and (min-width:300px){
+         
+         .filter{
+
+           margin-right: 2rem;
+           
+         }
+      }
+      @media (max-width:444px) and (min-width:439px){
+         
+         .filter{
+
+           margin-right: 2.5rem;
+           
+         }
       }
 
 
@@ -66,6 +100,10 @@
        <div><i class="fa-brands fa-fort-awesome"></i></div>
        <p> castles </p>
      </div>
+     <div class="filter">
+       <div><i class="fa-solid fa-person-swimming"></i></div>
+       <p>Beach</p>
+     </div>
      <div class="tax-toggle">
         <div class="form-check-reverse form-switch ">
            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
@@ -75,7 +113,7 @@
      
   </div>
 
-  <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3"> <!-- row-cols-1 (means if size is less than sm(small) then show only 1 card )  -->
 
       <% for (let i of allListings){%>
 

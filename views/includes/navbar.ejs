@@ -4,6 +4,7 @@
         
         display: flex;
         justify-content: space-between;
+   
     }
 
     .search-btn{
@@ -25,28 +26,75 @@
       padding: 0.5rem 3rem 0.5rem 3rem;
     }
     
+    @media(max-width:580px){
+
+
+       .navbar-nav{
+           
+            flex-direction: row !important;
+           
+       }
+
+       .navbar {
+           
+          height: 10rem;
+       }
+       
+
+        
+        .options .nav-link {
+
+        padding: 0.25rem 0.5rem;  
+        margin-left: 1rem;
+                
+       }
+
+       .search {
+         margin-right: 0.5rem;          
+       }     
+       
+       .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;                    
+       }
+       
+       .logo .navbar-brand {
+        font-size: 2rem;           
+        margin-right: 0.5rem;
+
+       }
+
+       .search-input{
+           
+           font-size: small;
+       }
+       
+    }
+
     
 </style>
 
-<nav  class="navbar navbar-expand-md bg-body-light border-bottom sticky-top"> 
+<nav  class="navbar navbar-expand-sm bg-body-light border-bottom sticky-top"> 
   
   <div class="container-fluid">
 
    
-      <div class="navbar-nav">
+      <div class="navbar-nav logo">
          <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>  
-         <a class="nav-link" href="/listings">Explore</a>
+         <a class="nav-link" href="/listings"><b>Traveler</b></a>
 
       </div>
 
-     <div class="navbar-nav ">
+     <div class="navbar-nav  search">
        <form class="d-flex" role="search">
       <input class="form-control me-2 search-input" type="search" placeholder="Search Destination" />
       <button class="btn search-btn" type="submit">Search</button>
        </form>
      </div>
 
-    <div class="navbar-nav ">
+    <div class="navbar-nav options">
 
        <a class="nav-link" href="/listings/new">Add new Listing</a>
       
